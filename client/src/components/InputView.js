@@ -23,8 +23,8 @@ function InputView (props) {
         }
     }
 
-    getInfo = () => {
-        
+    const getInfo = () => {
+
     }
 
     /*
@@ -57,7 +57,7 @@ function InputView (props) {
     return (
         <div className="input-form">
         <h2>Hi I'm the input view</h2>
-            <form onSubmit={handleSubmit}>
+            <form >
                 <label htmlFor="type">Select media type:</label>
                 <select name="type" id="type" value={type} onChange={handleChange}>
                     <option selected value=" ">Please Select</option>
