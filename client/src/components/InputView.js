@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "./InputView.css"
+import ResultsList from './ResultsList'
 
 
 function InputView (props) {
     let [type, setType] = useState('');
     let [title, setTitle] = useState('');
+    let [movieResults, setMovieResults] = useState(null);
+    let [showResultsList, setShowResultsList] = useState(false);
 
     const movieDBKey = "9d78113e827667b65962602869de3b76"
 
-    //this function is done - type and title are assigned
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -22,42 +24,34 @@ function InputView (props) {
             //no default
         }
     }
-
-    const getInfo = () => {
-
-    }
-
-    /*
+    
     const handleSubmit = (event) => {
         event.preventDefault();
+        setMovieResults(null);
         let query = { type, title };
         //search the API here
-        let titleQuery = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKey}&query=${query.title.split('').join('+')}`
-        let movObj = {};
+        let titleQuery = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKey}&query=${query.title.split(' ').join('+')}`
 
         fetch(titleQuery)
             .then(response => response.json())
-            .then(jsonResponse => {
-                if(jsonResponse.Response === 'True') {
-                    movObj = jsonResponse.Search;
-                } else {
-                    console.log("That didn't work!")
-                }
-            })
-        
-        console.log(movObj)
-        props.onSubmit(movObj)
+            .then(data => setMovieResults(data.results.slice(0,10)))
+            .catch(error => console.log(error));
+
+        setShowResultsList(true);
 
         setTitle('');
         setType('');
     }
-    */
 
-
+    const selectItem = (item) => {
+        props.handleNewItem(item)
+        setShowResultsList(false);
+    }
+    
     return (
         <div className="input-form">
         <h2>Hi I'm the input view</h2>
-            <form >
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="type">Select media type:</label>
                 <select name="type" id="type" value={type} onChange={handleChange}>
                     <option selected value=" ">Please Select</option>
@@ -70,12 +64,10 @@ function InputView (props) {
                 <input type="text" name="title" id="title" value={title} onChange={handleChange}></input>
                 <button type="submit">Submit</button>
             </form>
+        {showResultsList && <ResultsList movieResults={movieResults} handleClick={item => selectItem(item)}/>}
         </div>
     )
-
 }
 
 export default InputView;
 
-//TMDB API Key = "9d78113e827667b65962602869de3b76"
-//TMDB example request = "https://api.themoviedb.org/3/movie/550?api_key=9d78113e827667b65962602869de3b76"

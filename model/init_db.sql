@@ -14,5 +14,10 @@ CREATE TABLE items (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     media_type VARCHAR(100),
     title VARCHAR(100) NOT NULL,
+    genres VARCHAR(200),
+    overview TEXT,
+    release_date DATE,
+    item_length INT,
+    api_id INT,
     userid INT
 );
