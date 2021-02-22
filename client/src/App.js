@@ -9,20 +9,48 @@ function App() {
 
   const movieDBKey = "9d78113e827667b65962602869de3b76"
 
+  useEffect(() => {
+    getItems();
+  }, []);
+
+  const getItems = () => {
+    fetch("/items")
+      .then(response => response.json())
+      .then(items => {
+        setAllItems(items);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+
   const handleChangeView = (inputView) => {
     setInputView(inputView)
   }
 
-  const handleNewItem = (item) => {
+  const handleNewItem = (item, type) => { 
 
     let idurl = `https://api.themoviedb.org/3/movie/${item.id}?api_key=${movieDBKey}`
 
+
     fetch(idurl)
       .then(response => response.json())
-      .then(data => setAllItems([...allItems, data]))
-      .catch(error => error.message)    
-
-    setInputView(false);
+      .then(data => {
+        data.type=type
+        //console.log(data);
+        let options = {
+          method: "POST",
+          headers: { "Content-Type" : "application/json" },
+          body: JSON.stringify(data)
+        };
+        fetch("/items", options)
+          .then(result => result.json())
+          .then(items => setAllItems(items))
+          .catch(err => console.log("error:", err.message)
+          )
+      }
+      ).catch(error => console.log(error))
   }
 
   return (

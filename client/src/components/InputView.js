@@ -29,7 +29,6 @@ function InputView (props) {
         event.preventDefault();
         setMovieResults(null);
         let query = { type, title };
-        //search the API here
         let titleQuery = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKey}&query=${query.title.split(' ').join('+')}`
 
         fetch(titleQuery)
@@ -40,12 +39,17 @@ function InputView (props) {
         setShowResultsList(true);
 
         setTitle('');
-        setType('');
+        //setType(''); // don't reset here
     }
 
     const selectItem = (item) => {
-        props.handleNewItem(item)
+        let objType = type;
+        //console.log(objType)
+        props.handleNewItem(item, objType) // add type
         setShowResultsList(false);
+        setMovieResults(null);
+        //reset type here ?
+        setType('');
     }
     
     return (
@@ -55,10 +59,10 @@ function InputView (props) {
                 <label htmlFor="type">Select media type:</label>
                 <select name="type" id="type" value={type} onChange={handleChange}>
                     <option selected value=" ">Please Select</option>
-                    <option value="film">Film</option>
-                    <option value="book">Book</option>
-                    <option value="tvShow">TV Show</option>
-                    <option value="podcast">Podcast</option>
+                    <option value="Film">Film</option>
+                    <option value="Book">Book</option>
+                    <option value="TVShow">TV Show</option>
+                    <option value="Podcast">Podcast</option>
                 </select>
                 <label htmlFor="title">Title:</label>
                 <input type="text" name="title" id="title" value={title} onChange={handleChange}></input>
