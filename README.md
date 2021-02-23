@@ -96,4 +96,8 @@ TBC
 
 Suggested searching: https://dev.to/sage911/how-to-write-a-search-component-with-suggestions-in-react-d20
 
+## Presentation
+
+https://docs.google.com/presentation/d/1Kclsqen35phCsrKIwyQS05dIhsFJjcwPNep3a6zJmiA/edit?usp=sharing 
+
 _This is a student project that was created at[CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
