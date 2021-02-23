@@ -74,24 +74,11 @@ I am *a movie nerd* and I want:
 - [ ] Add API calls via form
 - [ ] IF TIME: live while-typing API search
 
-## Data Schema & Test Data
-
-[Test Data Sheet](https://docs.google.com/spreadsheets/d/1NapP-eI5R_qSIwZV9C8lOOS3kbvsJMs0HZgpVSfsicw/edit?usp=sharing)
-
-- [ ] Decide Structure
-
-### PostgreSQL
-
-Needs amending - maybe recommenders as separate table that links to each media type?
-
-![](https://i.imgur.com/7rgGOV6.png)
-
-
 ## User Flows
 
 TBC
 
-## API Routes
+## API Routes TO FINISH
 
 
 
@@ -108,3 +95,5 @@ TBC
 ## Learning Resources
 
 Suggested searching: https://dev.to/sage911/how-to-write-a-search-component-with-suggestions-in-react-d20
+
+_This is a student project that was created at[CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._

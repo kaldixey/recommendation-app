@@ -1,17 +1,19 @@
 import React from 'react';
 import './ResultsList.css';
+import {Alert, ListGroup, ListGroupItem} from 'react-bootstrap'; 
 
 function ResultsList(props) {
-    let items = props.movieResults;
+    let items = props.searchResults;
 
     return (
         <div>
-        <h2>Hi I'm the results list</h2>
-            <ul>
+        <h2>Results:</h2>
+            <ListGroup>
                 {
-                    items && items.map(it => <li key={it.id} onClick={(e) => props.handleClick(it)}>{it.original_title}</li>)
+                    items && items.map(it => <ListGroup.Item key={it.id} onClick={(e) => props.handleClick(it)}>{it.original_title}</ListGroup.Item>)
                 }
-            </ul>
+            </ListGroup>
+            <Alert variant="warning">Can't find what you're looking for? <a href="#">Enter manually</a></Alert>
         </div>
     )
 }
