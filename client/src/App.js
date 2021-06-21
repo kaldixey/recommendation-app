@@ -6,6 +6,7 @@ import {Col, Container, Row} from 'react-bootstrap';
 import {Navbar, Nav, Alert} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import './custom-theme.scss';
 
 function App() {
   const [inputView, setInputView] = useState(true);
@@ -78,7 +79,7 @@ function App() {
   }
 
   return (
-    <Container style={{textAlign: "center"}}>
+    <Container style={{textAlign: "center"}} className="homeView">
       <Row>
       <Col>
         <Navbar bg="light">
