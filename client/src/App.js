@@ -6,13 +6,14 @@ import {Col, Container, Row} from 'react-bootstrap';
 import {Navbar, Nav, Alert} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import './custom-theme.scss';
+//import './custom-theme.scss';
 
 function App() {
   const [inputView, setInputView] = useState(true);
   const [allItems, setAllItems] = useState([]);
   const [alert, setShowAlert] = useState(false);
 
+  //move this
   const movieDBKey = "9d78113e827667b65962602869de3b76"
 
   useEffect(() => {
