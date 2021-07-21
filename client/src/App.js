@@ -37,28 +37,23 @@ function App() {
     setShowAlert(false)
   }
 
-  const handleNewItem = (item, type) => { 
+  function handleNewItem(item, type) {
+	
+    let itemDetails = {item, type}
     
-    let url = `https://api.themoviedb.org/3/movie/${item.id}?api_key=${movieDBKey}`;
-
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        data.type=type
-        //console.log(data);
-        let options = {
-          method: "POST",
-          headers: { "Content-Type" : "application/json" },
-          body: JSON.stringify(data)
-        };
-        fetch("/items", options)
-          .then(result => result.json())
-          .then(items => setAllItems(items))
-          .then(setShowAlert(true))
-          .catch(err => console.log("error:", err.message)
-          )
-      }
-      ).catch(error => console.log(error))
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify(itemDetails)
+    }
+    
+    fetch("/items", options)
+      .then(result => result.json())
+      .then(fetchedItems => setAllItems(fetchedItems))
+      .then(setShowAlert(true))
+      .catch(err => console.log("error:", err.message)
+      );
+      
   }
 
   async function deleteItem(id) {
