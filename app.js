@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const fetch = require('node-fetch');
+const API_KEY = process.env.MOVIEDB_API_KEY;
+
 //var cors = require("cors");
 
 //var indexRouter = require('./routes/index');
@@ -40,4 +43,28 @@ app.use(function(err, req, res, next) {
   res.send('error');
 });
 
+// initial moviedb search
+// app.get("/moviedb/search", async (req,res) => {
+//   try {
+//     let url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${req.query.query}`
+//     const response = await fetch(url)
+//     const data = await response.json();
+//     return res.json({
+//       success: true,
+//       data
+//     })
+//   } catch (err) {
+//     return res.status(500).json({
+//       success: false,
+//       message: err.message
+//     })
+//   }
+// });
+
 module.exports = app;
+
+/*
+TO READ:
+https://medium.com/swlh/hide-api-key-in-node-application-and-request-it-from-react-application-175ce257f493
+
+*/

@@ -53,8 +53,6 @@ router.post("/", async function(req,res,next) {
     let item = await getItem(data.item.id);
     let type = data.type;
     let genres = item.genres.map(g => g.name);
-    //console.log(item);
-    //do a case/switch with item.type and amend sql statement accordingly
     let overview = item.overview.split("'").join("")
     let sql = `INSERT INTO items (media_type,title,genres,overview,release_date,item_length,api_id,userid)
     VALUES ('${type}','${item.original_title}','${genres.join(',')}','${overview}','${item.release_date}',${item.runtime},${item.id},1)

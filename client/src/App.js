@@ -14,7 +14,6 @@ function App() {
   const [alert, setShowAlert] = useState(false);
 
   //move this
-  const movieDBKey = "9d78113e827667b65962602869de3b76"
 
   useEffect(() => {
     getItems();
