@@ -11,7 +11,8 @@ function InputView (props) {
     let [searchResults, setSearchResults] = useState(null);
     let [showResultsList, setShowResultsList] = useState(false);
 
-    const movieDBKey = "9d78113e827667b65962602869de3b76"
+    //move
+    const movieDBKey = process.env.REACT_APP_MOVIEDB_KEY
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -34,7 +35,6 @@ function InputView (props) {
 
         //do a case switch with titleQuery and amend url accordingly
         let titleQuery = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKey}&query=${query.title.split(' ').join('+')}`
-
 
         fetch(titleQuery)
             .then(response => response.json())
