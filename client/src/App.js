@@ -87,7 +87,7 @@ function App() {
       </Row>
       <Row>
       <Col>
-        <h1>MediaStash</h1>
+        <h1>MediaToConsume</h1>
       </Col>
       </Row>
       <Row>
