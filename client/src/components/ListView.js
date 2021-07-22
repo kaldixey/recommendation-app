@@ -3,7 +3,7 @@ import {Card,ToggleButton,Button} from 'react-bootstrap';
 import DataTable from 'react-data-table-component';
 
 function ListView (props) {
-    const showDeleteAlert = useState(false);
+    const [showDeleteAlert, setShowDeleteAlert] = useState(false);
     let items = props.allItems;
 
     const columns = [
