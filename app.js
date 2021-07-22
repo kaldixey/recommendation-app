@@ -66,5 +66,5 @@ module.exports = app;
 /*
 TO READ:
 https://medium.com/swlh/hide-api-key-in-node-application-and-request-it-from-react-application-175ce257f493
-
+https://github.com/JacksonBates/good-relay-fe/blob/master/src/Component.js 
 */
