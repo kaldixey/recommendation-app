@@ -23,10 +23,10 @@ function ListView (props) {
             name: 'Genres',
             cell: row => <div>{row.genres.split(',').join(', ')}</div>
         },
-        {
-            name: 'Complete',
-            cell: () => <Button variant="outline-success">Complete!</Button>
-        },
+        // {
+        //     name: 'Complete',
+        //     cell: () => <Button variant="outline-success">Complete!</Button>
+        // },
         {
             name: 'Delete',
             button: true,
