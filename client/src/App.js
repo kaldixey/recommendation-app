@@ -114,7 +114,7 @@ function App() {
       </Row>
       <Row>
       <Col>
-        <h1>MediaToConsume</h1>
+        {/* <h1>ReMedia</h1> */}
       </Col>
       </Row>
       <Row>

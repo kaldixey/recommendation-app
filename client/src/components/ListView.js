@@ -15,6 +15,8 @@ function ListView (props) {
         }
     ]
 
+    const filteredItems = items.filter(item => item.completed == 0);
+
     const columns = [
         {
             name: 'Type',
@@ -30,7 +32,7 @@ function ListView (props) {
         },
         {
             name: 'Genres',
-            cell: row => <div>{row.genres.split(',').join(', ')}</div>
+            cell: row => <div style={{textAlign: "left"}}>{row.genres.split(',').join(', ')}</div>
         },
         {
             name: 'Complete',
