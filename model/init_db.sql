@@ -18,6 +18,8 @@ CREATE TABLE items (
     overview TEXT,
     release_date DATE,
     item_length INT,
+    recommender TEXT,
+    completed BOOLEAN,
     api_id INT,
     userid INT
 );

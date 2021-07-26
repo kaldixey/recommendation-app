@@ -5,7 +5,7 @@ import ListView from "./components/ListView";
 import {Col, Container, Row} from 'react-bootstrap';
 import {Navbar, Nav, Alert} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+//import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 //import './custom-theme.scss';
 
 function App() {
@@ -73,6 +73,33 @@ function App() {
     }
   }
 
+  async function completeItem(row) {
+
+    let data = row;
+    //console.log(data);
+
+    data.completed === 0 ? data.completed = 1 : data.completed = 0;
+
+    console.log(data);
+    let options = {
+      method: 'PUT',
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    }
+
+    try {
+      let response = await fetch(`items/${data.id}`, options);
+      if(response.ok) {
+        let items = await response.json();
+        setAllItems(items);
+      } else {
+        console.log(`Server error:, ${response.status} ${response.statusText}`)
+      }
+    } catch(err) {
+      console.log('Network error:', err.message);
+    }
+  }
+
   return (
     <Container style={{textAlign: "center"}} className="homeView">
       <Row>
@@ -93,7 +120,7 @@ function App() {
       <Row>
       <Col>
         {inputView && <InputView handleNewItem={handleNewItem} />} {alert && <Alert variant="success">Item added!</Alert>}
-        {!inputView && <ListView allItems={allItems} onDelete={id => deleteItem(id)}/>}
+        {!inputView && <ListView allItems={allItems} onDelete={id => deleteItem(id)} onComplete={(id, completeness) => completeItem(id, completeness)}/>}
       </Col>
       </Row>
     </Container>

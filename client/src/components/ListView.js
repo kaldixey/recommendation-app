@@ -1,21 +1,30 @@
 import React, { useState } from "react";
-import {Card,ToggleButton,Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import DataTable from 'react-data-table-component';
 
 function ListView (props) {
-    const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+    //const [showDeleteAlert, setShowDeleteAlert] = useState(false);
     let items = props.allItems;
+
+    const conditionalRowStyles = [
+        {
+            when: row => row.completed == 1,
+            style: {
+                backgroundColor: 'gray'
+            }
+        }
+    ]
 
     const columns = [
         {
             name: 'Type',
-            selector: 'media_type',
+            selector: row => row['media_type'],
             sortable: true,
             maxWidth: '30px'
         },
         {
             name: 'Title',
-            selector: 'title',
+            selector: row => row['title'],
             sortable: true,
             maxWidth: '300px'
         },
@@ -23,10 +32,10 @@ function ListView (props) {
             name: 'Genres',
             cell: row => <div>{row.genres.split(',').join(', ')}</div>
         },
-        // {
-        //     name: 'Complete',
-        //     cell: () => <Button variant="outline-success">Complete!</Button>
-        // },
+        {
+            name: 'Complete',
+            cell: row => <Button variant="outline-success" onClick={(e) => props.onComplete(row)}>{row.completed == 0 ? "Complete!" : "Undo"}</Button>
+        },
         {
             name: 'Delete',
             button: true,
@@ -37,7 +46,14 @@ function ListView (props) {
 
     return (
         <div>
-            <DataTable title="My Items" columns={columns} data={items}></DataTable>
+            <DataTable 
+                title="My Items" 
+                columns={columns} 
+                data={items}
+                expandableRows
+                expandableRowsComponent={({data}) => <div>{data.overview}</div>}
+                conditionalRowStyles={conditionalRowStyles} 
+            />                
         </div>
     )
 
